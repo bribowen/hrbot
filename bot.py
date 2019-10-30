@@ -7,13 +7,16 @@ load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client()
-channelname = 'general'
+channelname = 'human-resources'
 
 def GetReportMessage(member):
     messages = [
         "%s has been reported to HR." % member.mention,
         "%s, I've set up a meeting with Jason Penn to discuss your recent behavior." % member.mention,
-        "Thank you for bringing %s to my attention." % member.mention
+        "Thank you for bringing %s to my attention." % member.mention,
+        "%s, you are FIRED!" % member.mention,
+        "I'll let it slide this time.",
+        "Snitch"
     ]
     return random.choice(messages)
 
@@ -43,7 +46,7 @@ async def on_message(message):
 
     if message.author == client.user or message.channel.name != channelname:
         return
-    elif "report" in message.content or "Report" in message.content:
+    elif "report" in message.content or "Report" in message.content or "reporting" in message.content or "Reporting" in message.content:
 #        await message.channel.send("I'm trying!")
         for member in message.mentions:
             if client.user != member:
