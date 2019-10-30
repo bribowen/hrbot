@@ -16,6 +16,7 @@ def GetReportMessage(member):
         "Thank you for bringing %s to my attention." % member.mention,
         "%s, you are FIRED!" % member.mention,
         "I'll let it slide this time.",
+        "%s, you are not allowed to make other co-workers cry. You have been automatically enrolled in sensitivity training." % member.mention,
         "Snitch"
     ]
     return random.choice(messages)
