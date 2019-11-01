@@ -1,10 +1,11 @@
 import os
 import discord
 import random
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
+print("Discord token is %s" % token)
 
 client = discord.Client()
 channelname = 'human-resources'
@@ -54,5 +55,19 @@ async def on_message(message):
                 await message.channel.send(GetReportMessage(member))
             else:
                 continue
-
+    #this is code to kick a member that gets fired!
+    elif "fire" in message.content.lower() or "fired" in message.content.lower():
+    	for role in message.author.roles:
+    		print("The role is: %s" % role)
+    		print("The permission to kick members is: %s" % role.permissions.kick_members)
+    		if role.permissions.kick_members:
+    			for member in message.mentions:
+    				if client.user != member:
+    					await message.channel.send("%s has been fired. Buh bye!" % member.mention)
+    					await member.kick(reason="You have been fired!")
+    				else:
+    					continue 
+    		else:
+    			continue
+         
 client.run(token)
