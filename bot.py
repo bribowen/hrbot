@@ -5,7 +5,7 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
-print("Discord token is %s" % token)
+#print("Discord token is %s" % token)
 
 client = discord.Client()
 channelname = 'human-resources'
