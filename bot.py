@@ -66,6 +66,7 @@ async def on_message(message):
     					await message.channel.send("%s has been fired. Buh bye!" % member.mention)
     					await member.kick(reason="You have been fired!")
     				else:
+    					await message.channel.send("%s, you are not high enough in this organization to fire someone!" % message.author)
     					continue 
     		else:
     			continue
